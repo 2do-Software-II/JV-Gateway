@@ -1,0 +1,36 @@
+
+type Role {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+type Permission {
+  id: ID!
+  name: String!
+  Role: Role!
+}
+
+type User {
+  id: String!
+  name: String!
+  email: String!
+  password: String!
+  role: Role!
+}
+
+input UserDto {
+  name: String!
+  email: String!
+  password: String!
+  role: ID!
+}
+
+type Query {
+  hello: String
+  getAllUsers: [User]
+}
+
+type Mutation {
+  createUser(createUserDto: UserDto!): User
+}
