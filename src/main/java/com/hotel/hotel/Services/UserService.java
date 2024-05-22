@@ -32,11 +32,4 @@ public class UserService {
         return repository.save(user);
     }
 
-    // private int autoincrementId() {
-    // List<User> users = repository.findAll();
-    // if (users.isEmpty()) {
-    // return 1;
-    // }
-    // return users.get(users.size() - 1).getId() + 1;
-    // }
 }

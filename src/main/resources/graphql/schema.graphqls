@@ -23,7 +23,7 @@ input UserDto {
   name: String!
   email: String!
   password: String!
-  role: ID!
+  role: String!
 }
 
 type Query {

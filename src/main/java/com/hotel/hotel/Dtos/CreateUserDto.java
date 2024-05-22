@@ -24,12 +24,12 @@ public class CreateUserDto {
 
     @NonNull
     @Min(1)
-    private int role;
+    private String role;
 
     public CreateUserDto() {
     }
 
-    public CreateUserDto(String name, String password, String email, int role) {
+    public CreateUserDto(String name, String password, String email, String role) {
         this.name = name;
         this.password = password;
         this.role = role;
