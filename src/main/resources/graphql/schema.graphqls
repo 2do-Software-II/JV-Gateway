@@ -1,14 +1,7 @@
-
 type Role {
-  id: ID!
+  id: String!
   name: String!
   description: String!
-}
-
-type Permission {
-  id: ID!
-  name: String!
-  Role: Role!
 }
 
 type User {
@@ -26,11 +19,18 @@ input UserDto {
   role: String!
 }
 
+input RoleDto {
+  name: String!
+  description: String!
+}
+
 type Query {
   hello: String
   getAllUsers: [User]
+  getAllRoles: [Role]
 }
 
 type Mutation {
   createUser(createUserDto: UserDto!): User
+  createRole(createRoleDto: RoleDto!): Role
 }

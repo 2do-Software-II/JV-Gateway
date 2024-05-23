@@ -1,12 +1,16 @@
 package com.hotel.hotel.Auth;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.hotel.hotel.Entities.Role;
 import com.hotel.hotel.Entities.User;
+import com.hotel.hotel.Repositories.RoleRepository;
 import com.hotel.hotel.Repositories.UserRepository;
 import com.hotel.hotel.Services.JwtService;
 
@@ -21,6 +25,8 @@ public class AuthService {
     @Autowired
     private UserRepository repository;
     @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -28,15 +34,15 @@ public class AuthService {
     private JwtService jwtService;
 
     public AuthenticationResponse register(RegisterDto request) {
-        System.out.println(request.name);
-        System.out.println(request.password);
-        System.out.println(request.email);
-        System.out.println(request.role);
-        User user = new User(
-                request.name,
-                passwordEncoder.encode(request.password),
-                request.email,
-                request.role);
+        Optional<Role> role = roleRepository.findByName("CLIENT");
+        if (role.isEmpty()) {
+            throw new RuntimeException("Role not found");
+        }
+        User user = new User();
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(role.get());
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
