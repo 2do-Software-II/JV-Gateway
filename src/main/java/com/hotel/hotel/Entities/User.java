@@ -40,7 +40,8 @@ public class User implements UserDetails {
     // return list the roles of the user
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(roleEnum.name()));
+        // return List.of(new SimpleGrantedAuthority(roleEnum.name()));
+        return List.of(new SimpleGrantedAuthority("ADMIN"));
     }
 
     @Override

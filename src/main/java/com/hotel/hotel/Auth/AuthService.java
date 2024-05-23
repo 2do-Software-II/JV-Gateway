@@ -20,10 +20,11 @@ public class AuthService {
 
     @Autowired
     private UserRepository repository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
     private JwtService jwtService;
 
     public AuthenticationResponse register(RegisterDto request) {
@@ -56,7 +57,6 @@ public class AuthService {
     }
 
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'refreshToken'");
     }
 

@@ -18,24 +18,26 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecuriyConfig {
-    private static final String[] WHITE_LIST_URL = {
-            "/auth/**",
-            "/graphiql",
-    };
-    private final JwtAuthenticationFilter JwtAuthenticationFilter;
-    private final AuthenticationProvider authenticationProvider;
+        private static final String[] WHITE_LIST_URL = {
+                        "/auth/**",
+                        "/graphiql",
+                        // "/graphql"
+        };
+        private final JwtAuthenticationFilter JwtAuthenticationFilter;
+        private final AuthenticationProvider authenticationProvider;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(WHITE_LIST_URL)
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(JwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http.csrf(AbstractHttpConfigurer::disable)
+                                .authorizeHttpRequests(requests -> requests
+                                                .requestMatchers(WHITE_LIST_URL)
+                                                .permitAll()
+                                                .anyRequest()
+                                                .authenticated())
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authenticationProvider(authenticationProvider)
+                                .addFilterBefore(JwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                return http.build();
+        }
 }

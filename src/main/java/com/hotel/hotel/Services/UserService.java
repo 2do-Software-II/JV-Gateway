@@ -20,7 +20,6 @@ public class UserService {
     }
 
     public void getById() {
-        // TODO implement here
     }
 
     public User create(CreateUserDto createUserDto) {
