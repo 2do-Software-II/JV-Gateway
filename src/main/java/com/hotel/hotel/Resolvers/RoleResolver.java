@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 
 import com.hotel.hotel.Dtos.CreateRoleDto;
+import com.hotel.hotel.Dtos.UpdateRoleDto;
 import com.hotel.hotel.Entities.Role;
 import com.hotel.hotel.Services.RoleService;
 
@@ -27,9 +28,20 @@ public class RoleResolver {
         return roleService.getAll();
     }
 
+    // getone
+    @QueryMapping
+    public Role getOneRole(@Argument String id) {
+        return roleService.getOne(id);
+    }
+
     @MutationMapping
     public Role createRole(@Valid @Argument CreateRoleDto createRoleDto) {
         System.out.println(createRoleDto.getName());
         return roleService.create(createRoleDto);
+    }
+
+    @MutationMapping
+    public Role updateRole(@Argument String id, @Argument UpdateRoleDto updateRoleDto) {
+        return roleService.update(id, updateRoleDto);
     }
 }
