@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 
 import com.hotel.hotel.Dtos.CreateUserDto;
+import com.hotel.hotel.Dtos.UpdateUserDto;
 import com.hotel.hotel.Entities.User;
 import com.hotel.hotel.Services.UserService;
 
@@ -27,9 +28,19 @@ public class UserResolver {
         return userService.getAll();
     }
 
+    @QueryMapping
+    public User getOneUser(@Argument String id) {
+        return userService.getOne(id);
+    }
+
     @MutationMapping
     public User createUser(@Valid @Argument CreateUserDto createUserDto) {
         return userService.create(createUserDto);
+    }
+
+    @MutationMapping
+    public User updateUser(@Argument String id, @Argument UpdateUserDto updateUserDto) {
+        return userService.update(id, updateUserDto);
     }
 
 }

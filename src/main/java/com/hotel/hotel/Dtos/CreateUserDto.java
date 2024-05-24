@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateUserDto {
+
     @NotBlank
     private String name;
 

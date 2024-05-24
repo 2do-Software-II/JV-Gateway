@@ -12,25 +12,40 @@ type User {
   role: Role!
 }
 
-input UserDto {
+input CreateUserDto {
   name: String!
   email: String!
   password: String!
   role: String!
 }
 
-input RoleDto {
+input CreateRoleDto {
   name: String!
   description: String!
 }
 
+input UpdateRoleDto {
+  name: String
+  description: String
+}
+
+input UpdateUserDto {
+  name: String
+  email: String
+  password: String
+  role: String
+} 
+
 type Query {
-  hello: String
+  getOneUser(id: String!): User
   getAllUsers: [User]
+  getOneRole(id: String!): Role
   getAllRoles: [Role]
 }
 
 type Mutation {
-  createUser(createUserDto: UserDto!): User
-  createRole(createRoleDto: RoleDto!): Role
+  createUser(createUserDto: CreateUserDto!): User
+  updateUser(id: String!, updateUserDto: UpdateUserDto!): User
+  createRole(createRoleDto: CreateRoleDto!): Role
+  updateRole(id: String!, updateRoleDto: UpdateRoleDto!): Role
 }
