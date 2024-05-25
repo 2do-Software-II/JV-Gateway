@@ -12,11 +12,27 @@ type User {
   role: Role!
 }
 
+type Service {
+  id: String!
+  name: String!
+  description: String!
+}
+
 input CreateUserDto {
   name: String!
   email: String!
   password: String!
   role: String!
+}
+
+input CreateServiceDto {
+  name: String!
+  description: String!
+}
+
+input UpdateServiceDto {
+  name: String
+  description: String
 }
 
 input CreateRoleDto {
@@ -34,13 +50,15 @@ input UpdateUserDto {
   email: String
   password: String
   role: String
-} 
+}
 
 type Query {
   getOneUser(id: String!): User
   getAllUsers: [User]
   getOneRole(id: String!): Role
   getAllRoles: [Role]
+  getOneService(id: String!): Service
+  getAllServices: [Service]
 }
 
 type Mutation {
@@ -48,4 +66,6 @@ type Mutation {
   updateUser(id: String!, updateUserDto: UpdateUserDto!): User
   createRole(createRoleDto: CreateRoleDto!): Role
   updateRole(id: String!, updateRoleDto: UpdateRoleDto!): Role
+  createService(createServiceDto: CreateServiceDto!): Service
+  updateService(id: String!, updateServiceDto: UpdateServiceDto!): Service
 }
