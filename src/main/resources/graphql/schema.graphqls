@@ -18,18 +18,10 @@ type Service {
   description: String!
 }
 
-enum Status {
-  DISPONIBLE
-  OCUPADO
-  MANTENIMIENTO
-  EN_LIMPIEZA
-  RESERVADO
-}
-
 type Room {
   id: String!
   nroRoom: String!
-  status: Status!
+  status: String!
   nroBed: Int!
   nroPersons: Int!
   size: String!
@@ -81,7 +73,7 @@ input UpdateUserDto {
 
 input CreateRoomDto {
   nroRoom: String!
-  status: Status!
+  status: String!
   nroBed: Int!
   nroPersons: Int!
   size: String!
@@ -93,7 +85,7 @@ input CreateRoomDto {
 
 input UpdateRoomDto {
   nroRoom: String
-  status: Status
+  status: String
   nroBed: Int
   nroPersons: Int
   size: String
@@ -123,6 +115,7 @@ type Query {
   getOneRoom(id: String!): Room
   getAllRooms: [Room]
   getAllRoomsBy(attr: String!, value: String!): [Room]
+  getServicesByRoom(id: String!): [RoomService]
 }
 
 type Mutation {
@@ -134,4 +127,5 @@ type Mutation {
   updateService(id: String!, updateServiceDto: UpdateServiceDto!): Service
   createRoom(createRoomDto: CreateRoomDto!): Room
   updateRoom(id: String!, updateRoomDto: UpdateRoomDto!): Room
+  addServices(createRoomServiceDto: CreateRoomServiceDto!): RoomService
 }

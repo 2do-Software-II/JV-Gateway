@@ -12,8 +12,10 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.hotel.hotel.Dtos.CreateRoomDto;
+import com.hotel.hotel.Dtos.CreateRoomServiceDto;
 import com.hotel.hotel.Dtos.UpdateRoomDto;
 import com.hotel.hotel.Entities.Room;
+import com.hotel.hotel.Entities.RoomServiceEntity;
 
 @Service
 public class RoomService {
@@ -86,4 +88,31 @@ public class RoomService {
             return null;
         }
     }
+
+    public List<RoomServiceEntity> getServicesByRoom(String id) {
+        try {
+            String url = URL + "/room/services/" + id;
+            ResponseEntity<List<RoomServiceEntity>> response = restTemplate.exchange(url,
+                    HttpMethod.GET, null,
+                    new ParameterizedTypeReference<List<RoomServiceEntity>>() {
+                    });
+            return response.getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public RoomServiceEntity addServices(CreateRoomServiceDto createRoomServiceDto) {
+        try {
+            String url = URL + "/room/service";
+            ResponseEntity<RoomServiceEntity> response = restTemplate.postForEntity(url, createRoomServiceDto,
+                    RoomServiceEntity.class);
+            return response.getBody();
+        } catch (RestClientException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
