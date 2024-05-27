@@ -18,6 +18,33 @@ type Service {
   description: String!
 }
 
+enum Status {
+  DISPONIBLE
+  OCUPADO
+  MANTENIMIENTO
+  EN_LIMPIEZA
+  RESERVADO
+}
+
+type Room {
+  id: String!
+  nroRoom: String!
+  status: Status!
+  nroBed: Int!
+  nroPersons: Int!
+  size: String!
+  price: Float!
+  description: String!
+  type: String!
+  view: String!
+}
+
+type RoomService {
+  id: String!
+  service: Service!
+  room: Room!
+}
+
 input CreateUserDto {
   name: String!
   email: String!
@@ -52,6 +79,40 @@ input UpdateUserDto {
   role: String
 }
 
+input CreateRoomDto {
+  nroRoom: String!
+  status: Status!
+  nroBed: Int!
+  nroPersons: Int!
+  size: String!
+  price: Float!
+  description: String!
+  type: String!
+  view: String!
+}
+
+input UpdateRoomDto {
+  nroRoom: String
+  status: Status
+  nroBed: Int
+  nroPersons: Int
+  size: String
+  price: Float
+  description: String
+  type: String
+  view: String
+}
+
+input CreateRoomServiceDto {
+  service: String!
+  room: String!
+}
+
+input UpdateRoomServiceDto {
+  service: String
+  room: String
+}
+
 type Query {
   getOneUser(id: String!): User
   getAllUsers: [User]
@@ -59,6 +120,9 @@ type Query {
   getAllRoles: [Role]
   getOneService(id: String!): Service
   getAllServices: [Service]
+  getOneRoom(id: String!): Room
+  getAllRooms: [Room]
+  getAllRoomsBy(attr: String!, value: String!): [Room]
 }
 
 type Mutation {
@@ -68,4 +132,6 @@ type Mutation {
   updateRole(id: String!, updateRoleDto: UpdateRoleDto!): Role
   createService(createServiceDto: CreateServiceDto!): Service
   updateService(id: String!, updateServiceDto: UpdateServiceDto!): Service
+  createRoom(createRoomDto: CreateRoomDto!): Room
+  updateRoom(id: String!, updateRoomDto: UpdateRoomDto!): Room
 }
