@@ -55,4 +55,12 @@ public class RoleService {
             role.setDescription(updateRoleDto.getDescription());
         return repository.save(role);
     }
+
+    public Role roleCustomer() {
+        Optional<Role> role = repository.findByName("CUSTOMER");
+        if (role.isEmpty()) {
+            throw new RuntimeException("Role not found");
+        }
+        return role.get();
+    }
 }

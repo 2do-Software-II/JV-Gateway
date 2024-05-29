@@ -43,6 +43,36 @@ type Resource {
   room: Room!
 }
 
+type Customer {
+  id: String!
+  name: String!
+  lastName: String!
+  phone: String!
+  address: String!
+  ci: String!
+  expedition: String!
+  birthdate: String!
+  nationality: String!
+  gender: String!
+  preference: String!
+}
+
+type Booking {
+  id: String!
+  date: String!
+  time: String!
+  status: String!
+  checkIn: String!
+  checkOut: String!
+  prePaid: Float!
+  fullPayment: Float!
+  paymentMethod: String!
+  startDate: String!
+  endDate: String!
+  customer: Customer!
+  room: Room!
+}
+
 input CreateUserDto {
   name: String!
   email: String!
@@ -116,6 +146,63 @@ input CreateResourceDto {
   room: String!
 }
 
+input CreateCustomerDto {
+  name: String!
+  lastName: String!
+  phone: String!
+  address: String!
+  ci: String!
+  expedition: String!
+  birthDate: String!
+  nationality: String!
+  gender: String!
+  preference: String!
+  user: String!
+}
+
+input UpdateCustomerDto {
+  name: String
+  lastName: String
+  phone: String
+  address: String
+  ci: String
+  expedition: String
+  birthDate: String
+  nationality: String
+  gender: String
+  preference: String
+}
+
+input CreateBookingDto {
+  date: String!
+  time: String!
+  status: String!
+  checkIn: String
+  checkOut: String
+  prePaid: Float
+  fullPayment: Float
+  paymentMethod: String!
+  startDate: String!
+  endDate: String!
+  customer: String!
+  room: String!
+}
+
+input UpdateBookingDto {
+  date: String
+  time: String
+  status: String
+  checkIn: String
+  checkOut: String
+  prePaid: Float
+  fullPayment: Float
+  paymentMethod: String
+  startDate: String
+  endDate: String
+  customer: String
+  room: String
+}
+
 type Query {
   getOneUser(id: String!): User
   getAllUsers: [User]
@@ -126,8 +213,13 @@ type Query {
   getOneRoom(id: String!): Room
   getAllRooms: [Room]
   getAllRoomsBy(attr: String!, value: String!): [Room]
-  getServicesByRoom(id: String!): [RoomService] 
+  getServicesByRoom(id: String!): [RoomService]
   getAllResourcesByRoom(id: String!): [Resource]
+  getAllCustomers: [Customer]
+  getOneCustomer(id: String!): Customer
+  getAllBookings: [Booking]
+  getOneBooking(id: String!): Booking
+  getAllBookingsBy(attr: String!, value: String!): [Booking]
 }
 
 type Mutation {
@@ -142,4 +234,10 @@ type Mutation {
   addServices(createRoomServiceDto: CreateRoomServiceDto!): RoomService
   addResource(createResourceDto: CreateResourceDto!): Resource
   deleteResource(id: String!): Resource
+  createCustomer(createCustomerDto: CreateCustomerDto!): Customer
+  updateCustomer(id: String!, updateCustomerDto: UpdateCustomerDto!): Customer
+  deleteCustomer(id: String!): Customer
+  createBooking(createBookingDto: CreateBookingDto!): Booking
+  updateBooking(id: String!, updateBookingDto: UpdateBookingDto!): Booking
+  deleteBooking(id: String!): Booking
 }

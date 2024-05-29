@@ -34,7 +34,7 @@ public class AuthService {
     private JwtService jwtService;
 
     public AuthenticationResponse register(RegisterDto request) {
-        Optional<Role> role = roleRepository.findByName("CLIENT");
+        Optional<Role> role = roleRepository.findByName("CUSTOMER");
         if (role.isEmpty()) {
             throw new RuntimeException("Role not found");
         }
