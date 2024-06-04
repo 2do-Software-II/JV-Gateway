@@ -3,7 +3,6 @@ package com.hotel.hotel.Dtos;
 import com.mongodb.lang.NonNull;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 import lombok.Getter;
@@ -24,7 +23,6 @@ public class CreateUserDto {
     private String email;
 
     @NonNull
-    @Min(1)
     private String role;
 
     public CreateUserDto() {
