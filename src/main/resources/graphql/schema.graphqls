@@ -22,7 +22,7 @@ type Room {
   id: String!
   nroRoom: String!
   status: String!
-  nroBed: Int!
+  nroBeds: Int!
   nroPersons: Int!
   size: String!
   price: Float!
@@ -110,7 +110,7 @@ input UpdateUserDto {
 input CreateRoomDto {
   nroRoom: String!
   status: String!
-  nroBed: Int!
+  nroBeds: Int!
   nroPersons: Int!
   size: String!
   price: Float!
@@ -122,7 +122,7 @@ input CreateRoomDto {
 input UpdateRoomDto {
   nroRoom: String
   status: String
-  nroBed: Int
+  nroBeds: Int
   nroPersons: Int
   size: String
   price: Float
