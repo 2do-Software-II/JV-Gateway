@@ -51,7 +51,7 @@ type Customer {
   address: String!
   ci: String!
   expedition: String!
-  birthdate: String!
+  birthDate: String!
   nationality: String!
   gender: String!
   preference: String!
