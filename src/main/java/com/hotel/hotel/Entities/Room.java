@@ -1,5 +1,7 @@
 package com.hotel.hotel.Entities;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +19,8 @@ public class Room {
     private String description;
     private String type;
     private String view;
+    private List<RoomServiceEntity> services;
+    private List<Resource> resources;
 
     public Room() {
     }

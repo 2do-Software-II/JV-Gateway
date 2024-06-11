@@ -43,6 +43,11 @@ public class RoomResolver {
         return roomService.getOne(id);
     }
 
+    @QueryMapping
+    public List<Room> getAllRoomsRecommended(@Argument String id) {
+        return roomService.getAllRoomsRecommended(id);
+    }
+
     @MutationMapping
     public Room createRoom(@Valid @Argument CreateRoomDto createRoomDto) {
         return roomService.create(createRoomDto);

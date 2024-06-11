@@ -29,6 +29,8 @@ type Room {
   description: String!
   type: String!
   view: String!
+  resources: [Resource]
+  services: [RoomService]
 }
 
 type RoomService {
@@ -213,6 +215,7 @@ type Query {
   getOneRoom(id: String!): Room
   getAllRooms: [Room]
   getAllRoomsBy(attr: String!, value: String!): [Room]
+  getAllRoomsRecommended(id: String!): [Room]
   getServicesByRoom(id: String!): [RoomService]
   getAllResourcesByRoom(id: String!): [Resource]
   getAllCustomers: [Customer]
