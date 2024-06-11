@@ -154,7 +154,12 @@ public class RoomService {
                     HttpMethod.GET, null,
                     new ParameterizedTypeReference<List<Room>>() {
                     });
-            return response.getBody();
+            List<Room> rooms = response.getBody();
+            for (Room room : rooms) {
+                room.setServices(getServicesByRoom(room.getId()));
+                room.setResources(getResourcesByRoom(room.getId()));
+            }
+            return rooms;
         } catch (RestClientException e) {
             e.printStackTrace();
             return null;
