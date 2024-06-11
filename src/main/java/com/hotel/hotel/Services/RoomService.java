@@ -149,7 +149,7 @@ public class RoomService {
     public List<Room> getAllRoomsRecommended(String id) {
         try {
             // String url = URL_IA + "/room/recommended/" + id;
-            String url = URL_SYSTEM + "/room/service";
+            String url = URL_SYSTEM + "/room";
             ResponseEntity<List<Room>> response = restTemplate.exchange(url,
                     HttpMethod.GET, null,
                     new ParameterizedTypeReference<List<Room>>() {
