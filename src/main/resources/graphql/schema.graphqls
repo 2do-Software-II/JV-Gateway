@@ -57,6 +57,7 @@ type Customer {
   nationality: String!
   gender: String!
   preference: String!
+  user: User!
 }
 
 type Booking {
