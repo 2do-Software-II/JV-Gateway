@@ -21,7 +21,8 @@ public class SecuriyConfig {
         private static final String[] WHITE_LIST_URL = {
                         "/auth/**",
                         "/graphiql",
-                        "/graphql"
+                        "/graphql",
+                        "/test/**"
         };
         private final JwtAuthenticationFilter JwtAuthenticationFilter;
         private final AuthenticationProvider authenticationProvider;
