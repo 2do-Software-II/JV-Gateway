@@ -81,4 +81,17 @@ public class CustomerService {
             e.printStackTrace();
         }
     }
+
+    public Customer getCustomerByUser(String id) {
+        try {
+            String url = URL + "/customer/by/user/" + id;
+            ResponseEntity<Customer> response = restTemplate.exchange(url, HttpMethod.GET, null,
+                    new ParameterizedTypeReference<Customer>() {
+                    });
+            return response.getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

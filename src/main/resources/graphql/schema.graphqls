@@ -221,6 +221,7 @@ type Query {
   getAllResourcesByRoom(id: String!): [Resource]
   getAllCustomers: [Customer]
   getOneCustomer(id: String!): Customer
+  getCustomerByUser(id: String!): Customer
   getAllBookings: [Booking]
   getOneBooking(id: String!): Booking
   getAllBookingsBy(attr: String!, value: String!): [Booking]

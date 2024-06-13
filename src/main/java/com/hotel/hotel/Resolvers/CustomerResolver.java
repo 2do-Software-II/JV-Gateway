@@ -29,6 +29,11 @@ public class CustomerResolver {
         return customerService.getOne(id);
     }
 
+    @QueryMapping()
+    public Customer getCustomerByUser(@Argument String id) {
+        return customerService.getCustomerByUser(id);
+    }
+
     @MutationMapping()
     public Customer createCustomer(@Argument CreateCustomerDto createCustomerDto) {
         return customerService.create(createCustomerDto);
