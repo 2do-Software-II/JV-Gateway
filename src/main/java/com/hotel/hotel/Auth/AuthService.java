@@ -43,11 +43,11 @@ public class AuthService {
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(role.get());
-        repository.save(user);
+        User userSaved = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
-                .user(user.getId())
+                .user(userSaved.getId())
                 .build();
     }
 

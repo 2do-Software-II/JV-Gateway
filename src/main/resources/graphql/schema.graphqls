@@ -76,10 +76,10 @@ type Booking {
   room: Room!
 }
 
-type Dashboard{
-  optionOne: [Int]
-  optionTwo: [Int]
-  optionThree: [Int]
+type Dashboard {
+  optionOne: [Int]!
+  optionTwo: [Int]!
+  optionThree: [Int]!
 }
 
 input CreateUserDto {
@@ -231,7 +231,7 @@ type Query {
   getAllBookings: [Booking]
   getOneBooking(id: String!): Booking
   getAllBookingsBy(attr: String!, value: String!): [Booking]
-  getDasboard(): Dashboard
+  getDashboard: Dashboard
 }
 
 type Mutation {
