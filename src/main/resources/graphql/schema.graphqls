@@ -76,10 +76,25 @@ type Booking {
   room: Room!
 }
 
+type One {
+  date: String!
+  fullPayment: Float!
+}
+
+type Two {
+  monthNumber: Int!
+  fullPayment: Float!
+}
+
+type Three {
+  monthNumber: Int!
+  reservationCount: Int!
+}
+
 type Dashboard {
-  optionOne: [Int]!
-  optionTwo: [Int]!
-  optionThree: [Int]!
+  optionOne: [One]!
+  optionTwo: [Two]!
+  optionThree: [Three]!
 }
 
 input CreateUserDto {
