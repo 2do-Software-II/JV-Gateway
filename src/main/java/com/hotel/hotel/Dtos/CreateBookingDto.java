@@ -20,4 +20,7 @@ public class CreateBookingDto {
     private String endDate;
     private String room;
     private String customer;
+
+    public CreateBookingDto() {
+    }
 }
