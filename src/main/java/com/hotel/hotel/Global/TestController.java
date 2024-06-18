@@ -56,7 +56,7 @@ public class TestController {
     }
 
     @GetMapping("/booking/{roomId}/{customerId}")
-    public ResponseEntity<Booking> addBooking(
+    public ResponseEntity<Boolean> addBooking(
             @PathVariable String roomId,
             @PathVariable String customerId,
             @RequestParam String startDate,
@@ -82,7 +82,8 @@ public class TestController {
                 endDate,
                 roomId,
                 customerId);
-        return ResponseEntity.ok(bookingService.create(createBookingDto));
+        bookingService.create(createBookingDto);
+        return ResponseEntity.ok(true);
     }
 
     private static String getCurrentDate() {
